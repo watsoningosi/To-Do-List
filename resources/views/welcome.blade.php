@@ -1,13 +1,21 @@
 <x-master>
-   <div class="col-md-12">
-    <div class="container">
-        <div class="row">
-            <div class="page-wrapper">
-                <div class="font-weight-bold">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis esse asperiores exercitationem commodi quia architecto itaque assumenda nulla amet odio repellendus cupiditate excepturi maxime, quis ad voluptate provident alias minus?
+    <div id="wrapper">
+        <div class="container">
+            <div class="col-md-12">
+                <div class="row mt-5" style="text-transform:uppercase">
+
+                    <center class="mt-5">
+
+                        @auth
+                            <h1>Hi there <span> {{ Auth::user()->name }}</span></h1>
+                        @else
+                            <img width="148" height="148" src="/assets/images/login.png" alt="">
+                            <h1>please <span><a class="font-bold" href="{{ route('login') }}">Sign in</a></span></h1>
+                        @endauth
+
+                    </center>
                 </div>
             </div>
         </div>
     </div>
-   </div>
 </x-master>

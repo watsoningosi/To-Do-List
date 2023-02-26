@@ -22,10 +22,16 @@ Auth::routes();
 
 Route::middleware('auth')->group(function () {
 
+    Route::get('/tasks/home', [App\Http\Controllers\TasksController::class, 'index'])->name('taskHome');
+
+    Route::post('/tasks/home', [App\Http\Controllers\TasksController::class, 'store'])->name('saveTask');
+
+    Route::get('/tasks', [App\Http\Controllers\TasksController::class, 'show'])->name('ShowTask');
 });
 
-Route::middleware('admin')->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
 
+    Route::get('/admin/home', [App\Http\Controllers\AdminController::class, 'index'])->name('adminHome');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

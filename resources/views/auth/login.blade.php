@@ -5,6 +5,11 @@
                 <div class="card mt-5">
                     <div class="card-header">{{ __('Login') }}</div>
 
+                    <center class="mt-5">
+
+                        <img width="148" height="148" src="/assets/images/login.png" alt="">
+                    </center>
+
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
