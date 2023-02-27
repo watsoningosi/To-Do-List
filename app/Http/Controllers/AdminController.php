@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tasks;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -16,7 +17,9 @@ class AdminController extends Controller
    
     public function index()
     {
-        return view('admin.index');
+            $tasks = Tasks::with('user')->latest()->paginate(10);
+            return view('admin.index',compact('tasks'));
+       
     }
 
     /**

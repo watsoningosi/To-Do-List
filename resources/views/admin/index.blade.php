@@ -29,23 +29,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @forelse ($tasks as $tasks )
+
                                         <tr>
-                                            <td>
-                                                1
-                                            </td>
-                                            <td>
-                                                Herman Beck
-                                            </td>
-                                            <td>
-                                                hello
-                                            </td>
-                                            <td>
-                                                $ 77.99
-                                            </td>
-                                            <td>
-                                                May 15, 2015
-                                            </td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $tasks->user->name}}</td>
+                                            <td>{{ $tasks->title }}</td>
+                                            <td>{{ $tasks->task_desc }}</td>
+                                            <td>{{ $tasks->created_at->diffForHumans() }}</td>
                                         </tr>
+                                            
+                                        @empty
+                                            no tasks available
+                                        @endforelse
                                         
                                     </tbody>
                                 </table>
