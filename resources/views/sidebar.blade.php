@@ -1,8 +1,8 @@
 <ul class="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('adminHome') }}">
+
         <div class="sidebar-brand-text mx-3"> <i class="fas fa-fw fa-tachometer-alt"></i> Admin Panel</div>
     </a>
 
@@ -34,9 +34,9 @@
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span></a>
+        <a class="nav-link" href="{{ route('adminUsers') }}">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Users</span></a>
     </li>
 
 
