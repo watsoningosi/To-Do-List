@@ -55,7 +55,19 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+      $attributes =  request()->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'password' => 'required|confirmed',
+        'admin' => 'required'
+        ]);
+
+        $user->update($attributes);
+
+        return redirect(route('editUser',$user->id))
+                       ->with('success', 'User has been Updated');
+
+
     }
 
     /**

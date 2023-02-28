@@ -37,9 +37,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::delete('/admin/users/{user}', [App\Http\Controllers\UsersController::class, 'destroy'])->name('delUser');
 
-    Route::get('/admin/users/edit/{user:name}', [App\Http\Controllers\UsersController::class, 'edit'])->name('editUsr');
+    Route::get('/admin/users/edit/{user}', [App\Http\Controllers\UsersController::class, 'edit'])->name('editUsr');
 
-    Route::patch('/admin/users/{user:name}', [App\Http\Controllers\UsersController::class, 'update'])->name('editUser');
+    Route::patch('/admin/users/edit/{user}', [App\Http\Controllers\UsersController::class, 'update'])->name('editUser');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

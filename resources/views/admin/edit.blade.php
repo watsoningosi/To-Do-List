@@ -1,36 +1,85 @@
 <x-adlay>
-    <div class="col-lg-12">
-        <div class="container-fluid">
-            <div class="row">
-
-                <h1> Edit User</h1>
-                @if (Session::has('success'))
-                    <div class="alert alert-success text-center">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        {{ Session::get('success') }}
-                    </div>
-                @endif
-
-                <form>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                            else.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control-lg" id="exampleInputPassword1">
-                    </div>
-                    <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
 
 
-            </div>
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-2"> Edit User</h5>
         </div>
+        <div class="card-body">
+            <form action="{{ route('editUser', $user->id) }}" method="post">
+                @csrf
+                @method('PATCH')
+                <div class="form-group mb-2">
+                    <label class="col-md-2" for="">Username</label>
+                    <input type="name" value="{{ $user->name }}" name="name" class="form-control col-md-6">
+                    @error('name')
+                        <p class="text-red-400">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="form-group mb-2">
+                    <label class="col-md-2" for="">Email address</label>
+                    <input type="email" value="{{ $user->email }}" name="email" class="form-control col-md-6">
+                    @error('email')
+                        <p class="text-red-400">{{ $message }}</p>
+                    @enderror
+                </div>
+
+
+                <div class="form-group mb-3">
+                    <label class="" for="">Previlage</label>
+                    <div class="col-md-6">
+                        <!-- col-md-6 Begin -->
+
+                        <select name="admin" class="form-control selectpicker" @error('admin') alert-danger @enderror
+                            value="{{ old('admin') }}"required autocomplete="admin" data-size="5">
+                            <!-- form-control Begin -->
+
+                            <option selected>
+                                @if ($user->admin == 1)
+                                    {{ 'Admin' }}
+                                @else
+                                    {{ 'Regular user' }}
+                                @endif
+                            </option>
+                            <option value="0"> No </option>
+                            <option value="1"> Yes</option>
+
+                        </select><!-- form-control Finish -->
+
+                    </div><!-- col-md-6 Finish -->
+                    <br>
+                    @error('admin')
+                        <strong class="toast">
+                            <p class="help alert-danger">{{ $errors->first('admin') }}</p>
+                        </strong>
+                    @enderror
+
+                </div>
+
+                <div class="form-group mb-2">
+                    <label class="col-md-2" for="">Password</label>
+                    <input type="password" name="password" value="{{ $user->password }}" class="form-control col-md-6">
+                    @error('password')
+                        <p class="text-red-400">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="form-group mb-6">
+                    <label for="" class="col-md-2">Password
+                        Confirmation</label>
+
+                    <input type="password" name="password_confirmation" class="form-control col-md-6" id="">
+
+                    @error('password_confirmation')
+                        <p class="text-red-400">{{ $message }}</p>
+                    @enderror
+                </div>
+
+
+                <button type="submit" name="submit" class="btn btn-primary">Edit user</button>
+            </form>
+        </div>
+    </div>
     </div>
 </x-adlay>

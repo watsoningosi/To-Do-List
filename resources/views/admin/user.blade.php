@@ -34,7 +34,8 @@
                                                 </td>
                                                 <td>{{ $users->created_at->diffForHumans() }}</td>
                                                 <td>
-                                                    <a href="{{ route('editUsr',$users->name) }}" class="btn btn-primary btn-sm">Edit</a>
+                                                    <a href="{{ route('editUsr', $users->id) }}"
+                                                        class="btn btn-primary btn-sm">Edit</a>
                                                     &nbsp;/
                                                     &nbsp;
                                                     <form action="{{ route('delUser', $users->id) }}" method="post">
