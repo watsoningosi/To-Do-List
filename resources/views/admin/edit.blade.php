@@ -6,7 +6,7 @@
             <h5 class="mb-2"> Edit User</h5>
         </div>
         <div class="card-body">
-            <form action="{{ route('editUser', $user->id) }}" method="post">
+            <form action="{{ route('editUser', $user->name) }}" method="post">
                 @csrf
                 @method('PATCH')
                 <div class="form-group mb-2">

@@ -42,7 +42,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getAvatarAttribute ()
+    public function getAvatarAttribute()
     {
         return "/assets/images/icon.jpg";
     }
@@ -52,9 +52,26 @@ class User extends Authenticatable
         return $this->hasMany(Tasks::class);
     }
 
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
+
+    public function path($append = '')
+    {  
+        $path = route('editUser',$this->name);
+
+        return $append ? "{$path}/{$append}" :$path;
+    }
+
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
     }
-    
+
+    /**   public function setPasswordAttribute($value)
+     * {
+     *    $this->attributes['password'] = bcrypt($value);
+     * }
+     **/
 }

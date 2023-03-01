@@ -14,7 +14,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::latest()->paginate(5);
         return view('admin.user', (compact('users')));
     }
 
@@ -64,7 +64,7 @@ class UsersController extends Controller
 
         $user->update($attributes);
 
-        return redirect(route('editUser',$user->id))
+        return redirect(route('editUser',$user->name))
                        ->with('success', 'User has been Updated');
 
 

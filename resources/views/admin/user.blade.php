@@ -20,25 +20,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($users as $users)
+                                        @forelse ($users as $user)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $users->name }}</td>
-                                                <td>{{ $users->email }}</td>
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->email }}</td>
                                                 <td>
-                                                    @if ($users->admin == 1)
+                                                    @if ($user->admin == 1)
                                                         {{ 'Admin' }}
                                                     @else
                                                         {{ 'Regular user' }}
                                                     @endif
                                                 </td>
-                                                <td>{{ $users->created_at->diffForHumans() }}</td>
+                                                <td>{{ $user->created_at->diffForHumans() }}</td>
                                                 <td>
-                                                    <a href="{{ route('editUsr', $users->id) }}"
+                                                    <a href="{{ route('editUsr', $user->name) }}"
                                                         class="btn btn-primary btn-sm">Edit</a>
                                                     &nbsp;/
                                                     &nbsp;
-                                                    <form action="{{ route('delUser', $users->id) }}" method="post">
+                                                    <form action="{{ route('delUser', $user->name) }}" method="post">
                                                         @csrf
                                                         @method('DELETE')
 
@@ -50,6 +50,7 @@
                                                 </td>
                                             </tr>
 
+
                                         @empty
                                             no tasks available
                                         @endforelse
@@ -57,7 +58,9 @@
 
 
                                     </tbody>
+
                                 </table>
+                                {!! $users->links() !!}
                             </div>
                         </div>
                     </div>

@@ -14,23 +14,12 @@
         Interface
     </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
+       <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Components</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Custom Components:</h6>
-                <a class="collapse-item" href="buttons.html">Buttons</a>
-                <a class="collapse-item" href="cards.html">Cards</a>
-            </div>
-        </div>
+        <a class="nav-link" href="{{ route('adminHome') }}">
+            <i class="fas fa-fw fa-check"></i>
+            <span>Tasks</span></a>
     </li>
-
-
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
@@ -43,7 +32,8 @@
     <li class="nav-item">
         <a href="{{ route('logout') }}" class="nav-link"
             onclick="event.preventDefault();
-        document.getElementById('logout-form').submit();">Logout</a>
+        document.getElementById('logout-form').submit();"><i class="fas fa-fw fa-power-off"></i>
+            <span>Logout</span></a></a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf
 

@@ -36,21 +36,23 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($tasks as $tasks)
+                                        @forelse ($tasks as $task)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $tasks->user->name }}</td>
-                                                <td>{{ $tasks->title }}</td>
-                                                <td>{{ $tasks->task_desc }}</td>
-                                                <td>{{ $tasks->created_at->diffForHumans() }}</td>
+                                                <td>{{ $task->user->name }}</td>
+                                                <td>{{ $task->title }}</td>
+                                                <td>{{ $task->task_desc }}</td>
+                                                <td>{{ $task->created_at->diffForHumans() }}</td>
                                             </tr>
 
                                         @empty
                                             no tasks available
                                         @endforelse
 
+
                                     </tbody>
                                 </table>
+                                {!! $tasks->links() !!}
                             </div>
                         </div>
                     </div>

@@ -17,7 +17,7 @@ class AdminController extends Controller
    
     public function index()
     {
-            $tasks = Tasks::with('user')->latest()->paginate(10);
+            $tasks = Tasks::with('user')->latest()->paginate(5);
             return view('admin.index',compact('tasks'));
        
     }
