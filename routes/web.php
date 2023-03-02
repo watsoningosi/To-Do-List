@@ -35,6 +35,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::delete('/admin/tasks/{task}', [App\Http\Controllers\AdminController::class, 'destroy'])->name('delTask');
 
+    Route::get('/admin/tasks/edit/{task}', [App\Http\Controllers\AdminController::class, 'edit'])->name('getTask');
+
+    Route::patch('/admin/tasks/edit/{task}', [App\Http\Controllers\AdminController::class, 'update'])->name('upTask');
+
     Route::get('/admin/users', [App\Http\Controllers\UsersController::class, 'index'])->name('adminUsers');
 
     Route::delete('/admin/users/{user}', [App\Http\Controllers\UsersController::class, 'destroy'])->name('delUser');

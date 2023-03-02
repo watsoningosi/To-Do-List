@@ -5,7 +5,7 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-header">Bordered table</h4>
+                        <h4 class="card-header">Tasks Lists</h4>
 
                         <div class="table-responsive pt-3">
                             <table class="table table-bordered">
@@ -38,10 +38,10 @@
                                             <td>{{ $task->task_desc }}</td>
                                             <td>{{ $task->created_at->diffForHumans() }}</td>
                                             <td>
-                                                <a href="" class="btn btn-sm btn-warning mb-1">Edit</a>
+                                                <a href="{{ route('getTask', $task->id) }}" class="btn btn-sm btn-warning mb-1">Edit</a>
                                                 &nbsp;/&nbsp;
 
-                                                <form action="{{ route('delTask', $task) }}" method="post">
+                                                <form action="{{ route('delTask', $task->id) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button name="submit" class="btn btn-sm btn-danger" type="submit">
