@@ -31,7 +31,9 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'admin'])->group(function () {
 
-    Route::get('/admin/home', [App\Http\Controllers\AdminController::class, 'index'])->name('adminHome');
+    Route::get('/admin/tasks', [App\Http\Controllers\AdminController::class, 'index'])->name('adminHome');
+
+    Route::delete('/admin/tasks/{task}', [App\Http\Controllers\AdminController::class, 'destroy'])->name('delTask');
 
     Route::get('/admin/users', [App\Http\Controllers\UsersController::class, 'index'])->name('adminUsers');
 

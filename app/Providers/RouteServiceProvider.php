@@ -19,7 +19,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/tasks';
 
-    public const ADMINPANEL = '/admin/home';
+    public const ADMINPANEL = '/admin/tasks';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
