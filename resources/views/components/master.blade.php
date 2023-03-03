@@ -14,7 +14,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-    
+
 
 </head>
 
@@ -53,9 +53,9 @@
                                 </li>
                             @endif
                         @else
-                        <li class="nav-item">
-                            <a href="{{ route('taskHome') }}" class="nav-link"></a>
-                        </li>
+                            <li class="nav-item">
+                                <a href="{{ route('taskHome') }}" class="nav-link"></a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link mr-1" href="#">
                                     {{ Auth::user()->name }}
@@ -64,11 +64,11 @@
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('logout') }}" class="nav-link"
-                                onclick="event.preventDefault();
+                                    onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">Logout</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
-                                    
+
                                 </form>
                             </li>
                         @endguest
@@ -78,6 +78,15 @@
         </nav>
 
         <main class="py-4">
+            <div class="container">
+                @if (Session::has('success'))
+                    <div class="alert alert-success text-center">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                        {{ Session::get('success') }}
+                    </div>
+                @endif
+            </div>
             {{ $slot }}
         </main>
     </div>

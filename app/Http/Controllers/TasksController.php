@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tasks;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class TasksController extends Controller
 {
@@ -14,8 +15,31 @@ class TasksController extends Controller
     }
 
     public function index()
-    {
+    {   
         return view('tasks.index');
+    }
+
+    public function edit(Tasks $task)
+    {
+        return view('tasks.edit', compact('task'));
+    }
+
+    public function update(Request $request, Tasks $task)
+    {
+        $attributes =  request()->validate([
+            'title' => 'required|max:255',
+            'task_desc' => 'required|max:255',
+            'task_img' => 'file'
+        ]);
+
+        if (request('task_img')) {
+            $name = request('task_img')->store('/images');
+            $attributes['task_img'] = "/storage/{$name}";
+        }
+
+        $task->update($attributes);
+
+        return redirect('/tasks')->with('success', 'Task Updated Successfully');
     }
 
     public function store(Tasks $tasks)
@@ -26,26 +50,33 @@ class TasksController extends Controller
             'user_id' => 'required|max:255',
             'task_img' => 'file'
         ]);
-
+        
         if (request('task_img')) {
             $name = request('task_img')->store('/images');
             $attributes['task_img'] = "/storage/{$name}";
+        } else{
+            $name = null;
         }
 
-         Tasks::create([
+        Tasks::create([
             'user_id' => auth()->id(),
             'title' => $attributes['title'],
             'task_desc' => $attributes['task_desc'],
             'task_img' => $name,
 
-         ]);
+        ]);
 
-        return redirect('/tasks')->with('success' ,'tasks entered successfully');
+        return redirect('/tasks')->with('success', 'tasks entered successfully');
     }
     public function show()
     {
-        return view('tasks.show',[
-            'tasks' => Tasks::where('user_id','=',Auth::user()->id)->get()
-        ]);
+        $tasks = Tasks::where('user_id', '=', Auth::user()->id)->latest()->paginate(4);
+        return view('tasks.show',compact('tasks'));
+    }
+    public function destroy(Tasks $task)
+    {
+        $task->delete();
+
+        return Redirect(route('ShowTask'))->with('success', 'Task Deleted');
     }
 }

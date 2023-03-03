@@ -27,6 +27,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/tasks/home', [App\Http\Controllers\TasksController::class, 'store'])->name('saveTask');
 
     Route::get('/tasks', [App\Http\Controllers\TasksController::class, 'show'])->name('ShowTask');
+
+    Route::get('/tasks/{task:title}', [App\Http\Controllers\TasksController::class, 'edit'])->name('UsrEditTask');
+
+    Route::patch('/tasks/{task:title}', [App\Http\Controllers\TasksController::class, 'update'])->name('UsrUpTask');
+
+    Route::delete('/tasks/{task:title}', [App\Http\Controllers\TasksController::class, 'destroy'])->name('UsrDelTask');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {

@@ -13,7 +13,7 @@
                         <div class="form-group row mb-3">
                             <label for="" class="col-sm-3 col-form-label">Title</label>
                             <div class="col-sm-9">
-                                <input type="text" name="title" class="form-control" placeholder="Title">
+                                <input type="text" name="title" value="{{ old('title') }}" class="form-control" placeholder="Title">
                                 @error('title')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
@@ -24,7 +24,7 @@
                         <div class="form-group row mb-3">
                             <label for="" class="col-sm-3 col-form-label">Description</label>
                             <div class="col-sm-9">
-                                <textarea name="task_desc" width="100%" id="" cols="50" rows="4"></textarea>
+                                <textarea name="task_desc" width="100%" id="" cols="50" rows="4">{{ old('task_desc') }}</textarea>
                                 @error('task_desc')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
@@ -33,7 +33,7 @@
                         <div class="form-group row mb-3">
                             <label for="exampleInputMobile" class="col-sm-3 col-form-label">Image</label>
                             <div class="col-sm-9">
-                                <input type="file" name="task_img" class="form-control" id="">
+                                <input type="file" value="{{ old('task_img') }}" name="task_img" class="form-control" id="">
                                 @error('task_img')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
