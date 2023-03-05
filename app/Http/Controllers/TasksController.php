@@ -27,11 +27,11 @@ class TasksController extends Controller
         return view('tasks.create');
     }
 
-    public function show($id, Request $request)
+    public function show(Request $request)
     {
-        $task = Tasks::with('status')->where('id', '=', $id)->first();
+        $task = Tasks::with('status')->first();
 
-        return view('tasks.show', ['task' => $task]);
+        return view('tasks.show', compact('task'));
     }
 
     public function edit(Tasks $task)

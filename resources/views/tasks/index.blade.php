@@ -31,7 +31,7 @@
                                                 <td>{{ $task->created_at->diffForHumans() }}</td>
 
                                                 <td>
-                                                    <a href="{{ route('viewTask', $task->id) }}"
+                                                    <a href="{{ route('viewTask', $task) }}"
                                                         class="btn btn-warning">view</a>
 
                                                 </td>
