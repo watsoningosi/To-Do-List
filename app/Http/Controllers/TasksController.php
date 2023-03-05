@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Status;
 use App\Models\Tasks;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,8 +16,22 @@ class TasksController extends Controller
     }
 
     public function index()
-    {   
-        return view('tasks.index');
+    {
+        $tasks = Tasks::where('user_id', '=', Auth::user()->id)->latest()->paginate(10);
+
+        return view('tasks.index', compact('tasks'));
+    }
+
+    public function create()
+    {
+        return view('tasks.create');
+    }
+
+    public function show($id, Request $request)
+    {
+        $task = Tasks::with('status')->where('id', '=', $id)->first();
+
+        return view('tasks.show', ['task' => $task]);
     }
 
     public function edit(Tasks $task)
@@ -50,11 +65,11 @@ class TasksController extends Controller
             'user_id' => 'required|max:255',
             'task_img' => 'file'
         ]);
-        
+
         if (request('task_img')) {
             $name = request('task_img')->store('/images');
             $attributes['task_img'] = "/storage/{$name}";
-        } else{
+        } else {
             $name = null;
         }
 
@@ -68,15 +83,10 @@ class TasksController extends Controller
 
         return redirect('/tasks')->with('success', 'tasks entered successfully');
     }
-    public function show()
-    {
-        $tasks = Tasks::where('user_id', '=', Auth::user()->id)->latest()->paginate(4);
-        return view('tasks.show',compact('tasks'));
-    }
     public function destroy(Tasks $task)
     {
         $task->delete();
 
-        return Redirect(route('ShowTask'))->with('success', 'Task Deleted');
+        return Redirect(route('taskHome'))->with('success', 'Task Deleted');
     }
 }

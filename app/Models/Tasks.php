@@ -21,5 +21,13 @@ class Tasks extends Model
         return 'title';
     }
 
-  
+    public function getTaskDefaultAttribute()
+    {
+        return '/assets/images/default.png';
+    }
+
+    public function status()
+    {
+        return $this->hasOne(Status::class, 'task_id');
+    }
 }

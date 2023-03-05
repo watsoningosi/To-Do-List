@@ -1,60 +1,58 @@
 <x-master>
+
     <div class="container">
-        <div class="col-md-8 grid-margin stretch-card">
-            <div class="card">
-
-                <div class="card-header">
-                    <h5>Add task</h5>
-                    <a href="{{ route('ShowTask') }}" class="btn btn-warning">view tasks</a>
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('saveTask') }}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-group row mb-3">
-                            <label for="" class="col-sm-3 col-form-label">Title</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="title" value="{{ old('title') }}" class="form-control" placeholder="Title">
-                                @error('title')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Get tasks</h5>
+                            <a href="{{ route('addTask') }}" class="btn btn-primary pull-right p-1">create task</a>
                         </div>
-                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" id="" class="form-control">
-                        <div class="form-group row mb-3">
-                            <label for="" class="col-sm-3 col-form-label">Description</label>
-                            <div class="col-sm-9">
-                                <textarea name="task_desc" width="100%" id="" cols="50" rows="4">{{ old('task_desc') }}</textarea>
-                                @error('task_desc')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row mb-3">
-                            <label for="exampleInputMobile" class="col-sm-3 col-form-label">Image</label>
-                            <div class="col-sm-9">
-                                <input type="file" value="{{ old('task_img') }}" name="task_img" class="form-control" id="">
-                                @error('task_img')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-3">
-                               
-                            </div>
-                            <div class="col-sm-9">
-                                <button class="btn btn-danger">Cancel</button>
-                                <input type="submit" value="Add a Task" name="submit" class="btn btn-success">
-                            </div>
-                            
-                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive pt-3">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Title</th>
+                                            <th>Description</th>
+                                            <th>Created At</th>
+                                            <th>Detailed view</th>
 
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($tasks as  $task)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $task->title }}</td>
+                                                <td>{{ $task->task_desc }}</td>
+                                                <td>{{ $task->created_at->diffForHumans() }}</td>
 
-                    </form>
+                                                <td>
+                                                    <a href="{{ route('viewTask', $task->id) }}"
+                                                        class="btn btn-warning">view</a>
+
+                                                </td>
+
+                                            </tr>
+
+                                        @empty
+
+                                            <p>no tasks postes</p>
+                                        @endforelse
+
+                                    </tbody>
+
+                                </table>
+                                {!! $tasks->links() !!}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
+
 </x-master>

@@ -22,11 +22,13 @@ Auth::routes();
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/tasks/home', [App\Http\Controllers\TasksController::class, 'index'])->name('taskHome');
+    Route::get('/tasks', [App\Http\Controllers\TasksController::class, 'index'])->name('taskHome');
 
-    Route::post('/tasks/home', [App\Http\Controllers\TasksController::class, 'store'])->name('saveTask');
+    Route::get('/tasker/{task:title}', [App\Http\Controllers\TasksController::class, 'show'])->name('viewTask');
 
-    Route::get('/tasks', [App\Http\Controllers\TasksController::class, 'show'])->name('ShowTask');
+    Route::get('/tasks/create', [App\Http\Controllers\TasksController::class, 'create'])->name('addTask');
+
+    Route::post('/tasks/create', [App\Http\Controllers\TasksController::class, 'store'])->name('saveTask');
 
     Route::get('/tasks/{task:title}', [App\Http\Controllers\TasksController::class, 'edit'])->name('UsrEditTask');
 
@@ -53,5 +55,3 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::patch('/admin/users/edit/{user:name}', [App\Http\Controllers\UsersController::class, 'update'])->name('editUser');
 });
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
