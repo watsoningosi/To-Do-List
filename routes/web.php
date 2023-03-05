@@ -35,6 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/tasks/{task:title}', [App\Http\Controllers\TasksController::class, 'update'])->name('UsrUpTask');
 
     Route::delete('/tasks/{task:title}', [App\Http\Controllers\TasksController::class, 'destroy'])->name('UsrDelTask');
+
+    Route::post('/tasker/{task}/status', [App\Http\Controllers\StatusController::class, 'store'])->name('saveState');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {

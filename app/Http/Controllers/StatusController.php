@@ -3,65 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\status;
+use App\Models\Tasks;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class StatusController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+
+    public function store(Request $request, status $status)
     {
-        //
+      $attributes =  request()->validate([
+            'task_id' => 'required',
+            'status' => 'required'
+        ]);
+
+        Status::updateOrCreate([
+        'task_id' => $attributes['task_id'],
+        'status' => $attributes['status'],
+        ]);
+
+        return redirect()->route('taskHome')->with('success', 'Status assigned succesfully');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(status $status)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(status $status)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, status $status)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(status $status)
-    {
-        //
-    }
 }

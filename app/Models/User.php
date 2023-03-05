@@ -58,10 +58,10 @@ class User extends Authenticatable
     }
 
     public function path($append = '')
-    {  
-        $path = route('editUser',$this->name);
+    {
+        $path = route('editUser', $this->name);
 
-        return $append ? "{$path}/{$append}" :$path;
+        return $append ? "{$path}/{$append}" : $path;
     }
 
     public function setPasswordAttribute($value)
