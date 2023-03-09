@@ -27,10 +27,8 @@ class TasksController extends Controller
         return view('tasks.create');
     }
 
-    public function show(Request $request)
+    public function show(Tasks $task)
     {
-        $task = Tasks::with('status')->first();
-
         return view('tasks.show', compact('task'));
     }
 

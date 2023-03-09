@@ -27,7 +27,12 @@
             <i class="fas fa-fw fa-user"></i>
             <span>Users</span></a>
     </li>
-
+     
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('session') }}">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Activity</span></a>
+    </li>
 
     <li class="nav-item">
         <a href="{{ route('logout') }}" class="nav-link"

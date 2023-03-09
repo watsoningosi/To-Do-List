@@ -5,25 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tasks extends Model
+class Session extends Model
 {
     use HasFactory;
-
-    protected $guarded = [];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-
-    public function getTaskDefaultAttribute()
+   public static function getPaylorde($session)
     {
-        return '/assets/images/default.png';
-    }
+        $payload = unserialize(base64_decode($session->payload));
 
-    public function status()
-    {
-        return $this->hasOne(Status::class, 'id');
+        return $payload['channel'];
     }
 }

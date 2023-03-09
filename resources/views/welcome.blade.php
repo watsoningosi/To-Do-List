@@ -14,6 +14,7 @@
                         @endauth
 
                     </center>
+                
                 </div>
             </div>
         </div>

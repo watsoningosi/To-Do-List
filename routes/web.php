@@ -22,6 +22,7 @@ Auth::routes();
 
 Route::middleware('auth')->group(function () {
 
+
     Route::get('/tasks', [App\Http\Controllers\TasksController::class, 'index'])->name('taskHome');
 
     Route::get('/tasker/{task:title}', [App\Http\Controllers\TasksController::class, 'show'])->name('viewTask');
@@ -36,7 +37,7 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/tasks/{task:title}', [App\Http\Controllers\TasksController::class, 'destroy'])->name('UsrDelTask');
 
-    Route::post('/tasker/{task}/status', [App\Http\Controllers\StatusController::class, 'store'])->name('saveState');
+    Route::patch('/tasker/{task:title}', [App\Http\Controllers\StatusController::class, 'update'])->name('upState');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
@@ -56,4 +57,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/users/edit/{user:name}', [App\Http\Controllers\UsersController::class, 'edit'])->name('editUsr');
 
     Route::patch('/admin/users/edit/{user:name}', [App\Http\Controllers\UsersController::class, 'update'])->name('editUser');
+
+    Route::get('/admin/session', [App\Http\Controllers\SessionController::class, 'index'])->name('session');
 });

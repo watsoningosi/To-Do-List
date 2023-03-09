@@ -8,8 +8,8 @@
     <title>Laravel</title>
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.bunny.net/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 
     <!-- Styles -->
@@ -29,7 +29,7 @@
                 <div class="mt-3 main-positioning position-absolute top-0 end-0 p-3">
                     @auth
                         <a href="{{ url('/home') }}" class="font-text-bold text-uppercase">Home</a>
-                        
+
                         <form class="font-text-bold text-uppercase" action="/logout" method="post">
                             @csrf
                             <input name="submit" value="Logout" type="submit" class="font-text-bold text-uppercase">

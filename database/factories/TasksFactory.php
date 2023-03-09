@@ -20,7 +20,7 @@ class TasksFactory extends Factory
         return [
             'user_id' => User::factory(),
             'title' => $this->faker->sentence,
-            'task_desc' => $this->faker->paragraph(3)
+            'task_desc' => $this->faker->paragraph(3),
         ];
     }
 }

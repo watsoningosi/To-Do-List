@@ -5,7 +5,7 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-header">Users</h4>
+                            <h4 class="card-header">Activity</h4>
 
                             <div class="table-responsive pt-3">
                                 <table class="table table-bordered">
@@ -13,32 +13,24 @@
                                         <tr>
                                             <th> #</th>
                                             <th> Username</th>
-                                            <th> Email</th>
-                                            <th> Previlage</th>
-                                            <th> Created at </th>
+                                            <th> Ip Address</th>
+                                            <th> Browser</th>
+                                            <th> Payload</th>
                                             <th> Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($users as $user)
+                                        @forelse ($sessions as $session)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $user->name }}</td>
-                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $session->user->name ?? 'Default User' }}</td>
+                                                <td>{{ $session->ip_address }}</td>
+                                                <td>{{ $session->user_agent }} </td>
+                                                <td>{{ $session->payload }}</td>
+
                                                 <td>
-                                                    @if ($user->admin == 1)
-                                                        {{ 'Admin' }}
-                                                    @else
-                                                        {{ 'Regular user' }}
-                                                    @endif
-                                                </td>
-                                                <td>{{ $user->created_at->diffForHumans() }}</td>
-                                                <td>
-                                                    <a href="{{ route('editUsr', $user->name) }}"
-                                                        class="btn btn-primary btn-sm">Edit</a>
-                                                    &nbsp;/
-                                                    &nbsp;
-                                                    <form action="{{ route('delUser', $user->name) }}" method="post">
+
+                                                    <form action="" method="post">
                                                         @csrf
                                                         @method('DELETE')
 
@@ -60,7 +52,7 @@
                                     </tbody>
 
                                 </table>
-                                {{ $users->links() }}
+
                             </div>
                         </div>
                     </div>

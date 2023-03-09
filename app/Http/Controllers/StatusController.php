@@ -12,19 +12,14 @@ use Illuminate\Http\Response;
 class StatusController extends Controller
 {
 
-    public function store(Request $request, status $status)
+    public function update(Request $request, Tasks $task)
     {
-      $attributes =  request()->validate([
-            'task_id' => 'required',
+        $attributes =  request()->validate([
             'status' => 'required'
         ]);
 
-        Status::updateOrCreate([
-        'task_id' => $attributes['task_id'],
-        'status' => $attributes['status'],
-        ]);
+        $task->update($attributes);
 
         return redirect()->route('taskHome')->with('success', 'Status assigned succesfully');
     }
-
 }

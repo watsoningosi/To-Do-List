@@ -12,7 +12,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.bunny.net/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 
 
@@ -63,6 +63,9 @@
 
                             </li>
                             <li class="nav-item">
+                                <a href="{{ route('taskHome') }}" class="nav-link">Tasks</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{ route('logout') }}" class="nav-link"
                                     onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">Logout</a>
@@ -79,9 +82,11 @@
 
         <main class="py-4">
             <div class="container">
+
+
                 @if (Session::has('success'))
-                    <div class="alert alert-success text-center">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert">&times;</button>
 
                         {{ Session::get('success') }}
                     </div>

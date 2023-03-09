@@ -19,40 +19,43 @@
                         <span style="color: greenyellow"
                             class="pull-right">{{ $task->created_at->diffForHumans() }}</span>
                     </div>
-                    <div class="card-footer">
-                        <a href="{{ route('UsrEditTask', $task->title) }}" class="btn btn-sm btn-primary mb-1">edit</a>
+                    <div class="card-footer row">
+                        <a href="{{ route('UsrEditTask', $task->title) }}"
+                            class="btn btn-sm btn-primary mb-1 col-md-3">edit</a>
                         <br>
-                        <form action="{{ route('UsrDelTask', $task->title) }}" method="post">
+                        <form action="{{ route('UsrDelTask', $task->title) }}" class="col-md-3" method="post">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-sm btn-danger" name="submit" type="submit">Delete</button>
                         </form>
-                        <h3 class="text-muted font-weight-bold">
+                        <center class="col-md-3">
 
-                            {{ $task->status->status ?? ' Please Assign status !' }}
+                            <label for="" class="btn btn-sm btn-warning"> {{ $task->status }}</label>
 
-
-                        </h3>
-                        <div class="col-md-6">
-
-                            <form action="/tasker/{task}/status" method="post">
-                                @csrf
-                                <div class="form-group">
-                                    <select class="form-control" name="status" id="">
-                                        <option value="pending">Pending</option>
-                                        <option value="active">Active</option>
-                                        <option value="review">Review</option>
-                                        <option value="close"> Close</option>
-                                    </select>
-                                </div>
-                                <input type="hidden" name="task_id" id="" value="{{ $task->id }}"
-                                    class="form-control">
-                                <button name="submit" class="btn btn-success btn-sm mt-1" type="submit">Assign
-                                    Task</button>
-                            </form>
-                        </div>
+                        </center>
 
                     </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="">
+
+                    <form action="{{ route('upState', $task->title) }}" method="post">
+                        @csrf
+                        @method('PATCH')
+                        <div class="form-group">
+                            <select class="form-control" name="status" id="">
+                                <option style="color: green;font-weight:900;" selected value="{{ $task->status }}">
+                                    {{ $task->status }}</option>
+                                <option value="pending">Pending</option>
+                                <option value="active">Active</option>
+                                <option value="review">Review</option>
+                                <option value="close"> Close</option>
+                            </select>
+                        </div>
+                        <button name="submit" class="btn btn-success btn-sm mt-1" type="submit">Update
+                            Task</button>
+                    </form>
                 </div>
             </div>
         </div>

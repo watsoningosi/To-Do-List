@@ -64,9 +64,10 @@ class User extends Authenticatable
         return $append ? "{$path}/{$append}" : $path;
     }
 
-    public function setPasswordAttribute($value)
+
+    public function session()
     {
-        $this->attributes['password'] = bcrypt($value);
+        return $this->hasMany(Session::class);
     }
 
     /**   public function setPasswordAttribute($value)
