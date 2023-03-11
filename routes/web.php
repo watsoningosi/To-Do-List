@@ -59,4 +59,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::patch('/admin/users/edit/{user:name}', [App\Http\Controllers\UsersController::class, 'update'])->name('editUser');
 
     Route::get('/admin/session', [App\Http\Controllers\SessionController::class, 'index'])->name('session');
+
+    Route::resource('/admin/teams', App\Http\Controllers\TeamsController::class);
 });
+
+

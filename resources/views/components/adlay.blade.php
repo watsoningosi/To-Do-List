@@ -73,6 +73,7 @@
             <script src="/assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
             <script src="/assets/js/admin.min.js"></script>
             <script src="https://kit.fontawesome.com/d7c3003f21.js" crossorigin="anonymous"></script>
+            <script src="https://unpkg.com/turbolinks"></script>
 </body>
 
 </html>

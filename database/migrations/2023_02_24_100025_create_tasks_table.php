@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('title');
             $table->text('task_desc');
             $table->string('task_img')->nullable();
+            $table->boolean('category')->default(0);
+            $table->foreignId('team_id')->nullable();
             $table->timestamps();
         });
     }

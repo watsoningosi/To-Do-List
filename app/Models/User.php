@@ -64,6 +64,11 @@ class User extends Authenticatable
         return $append ? "{$path}/{$append}" : $path;
     }
 
+    public function team()
+    {
+        return $this->hasMany(Team::class);
+    }
+
 
     public function session()
     {

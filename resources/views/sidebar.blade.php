@@ -27,6 +27,12 @@
             <i class="fas fa-fw fa-user"></i>
             <span>Users</span></a>
     </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('teams.index') }}">
+            <i class="fa fa-fw fa-chart-line"></i>
+            <span>Teams</span></a>
+    </li>
      
     <li class="nav-item">
         <a class="nav-link" href="{{ route('session') }}">

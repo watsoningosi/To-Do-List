@@ -98,5 +98,6 @@
 </body>
 
 </html>
+<script src="https://unpkg.com/turbolinks"></script>
 <script src="/jquery/jquery.min.js"></script>
 <script src="/bootstrap/js/bootstrap.min.js"></script>
