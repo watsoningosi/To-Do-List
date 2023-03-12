@@ -29,7 +29,8 @@
                                                 <td>{{ $team->created_at->diffForHumans() }}</td>
 
                                                 <td>
-
+                                                   <a href="{{ route('teams.show',$team->id) }}" class="btn btn-sm btn-warning">members</a>
+                                                  &nbsp;/&nbsp;
                                                     <form action="{{ route('teams.destroy', $team->id) }}" method="post">
                                                         @csrf
                                                         @method('DELETE')

@@ -6,6 +6,7 @@ use App\Models\Team;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class TeamsController extends Controller
 {
@@ -49,10 +50,21 @@ class TeamsController extends Controller
 
     /**
      * Display the specified resource.
+     * SELECT *, COUNT(*) FROM products GROUP BY category_id HAVING count(*) > 1;
+     * DB::table('teams')
+     *         ->leftJoin('members','members.team_id', '=', 'teams.id')
+     *       ->selectRaw('COUNT(*) as memberz')
+     *     ->groupBy('teams.id')
+     *   ->get();
+     * 
      */
     public function show(Team $team)
     {
-        //
+        $team = DB::table('members')
+            ->select('team_id', DB::raw('COUNT(*) as members'))
+            ->groupBy('team_id')
+            ->get();
+      return view('teams.show', ['team' => $team]);
     }
 
     /**
